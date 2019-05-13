@@ -1,0 +1,7 @@
+dist*
+frontend-result
+**/*.hi
+**/*.o
+.ghc*
+**/*.secret
+result

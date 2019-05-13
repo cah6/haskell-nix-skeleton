@@ -1,0 +1,1 @@
+Up-to-date Haskell project skeleton, built with Nix/cabal and including HIE.
