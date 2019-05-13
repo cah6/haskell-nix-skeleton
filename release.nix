@@ -1,7 +1,7 @@
 { withHoogle ? false
 }:
 let
-  pinnedPkgs = import ./nix/pkgs-from-json.nix { json = ./nix/nixos-18-09.json; };
+  pinnedPkgs = (import ./nix/nix-ghc-ptr.nix).pinnedPkgs;
 
   customHaskellPackages = pinnedPkgs.haskellPackages.override (old: {
     overrides = pinnedPkgs.lib.composeExtensions (old.overrides or (_: _: {})) (self: super: {

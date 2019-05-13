@@ -1,5 +1,6 @@
 let 
-  pinnedPkgs = import ./nix/pkgs-from-json.nix { json = ./nix/nixos-18-09.json; };
+  ghcPtr = import ./nix/nix-ghc-ptr.nix;
+  pinnedPkgs = ghcPtr.pinnedPkgs;
   myPackages = (import ./release.nix { withHoogle = true; } );
   all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
 
@@ -7,7 +8,7 @@ let
     buildInputs = oldAttrs.buildInputs ++ [ 
       pinnedPkgs.haskellPackages.cabal-install
       pinnedPkgs.haskellPackages.hlint
-      all-hies.versions.ghc843
+      all-hies.versions.${ghcPtr.hieVer}
       ];
     shellHook = ''
       export USERNAME="christian.henry"
